@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/albums",
+      "handler": "Albums.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/albums/count",
+      "handler": "Albums.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/albums/:_id",
+      "handler": "Albums.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/albums",
+      "handler": "Albums.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/albums/:_id",
+      "handler": "Albums.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/albums/:_id",
+      "handler": "Albums.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

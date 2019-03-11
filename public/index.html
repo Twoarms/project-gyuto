@@ -1,370 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 
-<head>
-  <meta charset="utf-8">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#000000">
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <title>Gyütö</title>
-  <meta property="og:title" content="Gyütö">
-  <meta property="og:description" content="Un documentaire de Filipa Cardoso">
-  <meta property="og:image" content="http://gyuto-movie.com/data/images/gyuto-monastery/1.JPG" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-
-  <style>
-    @media screen and (min-width: 701px) {
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Welcome to your Strapi app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
       * {
-        cursor: -webkit-image-set(url(./assets/images/cursor.png) 1x, url(./assets/images/cursorx2.png) 2x) 3 3, pointer !important;
+        -webkit-box-sizing: border-box;
       }
 
-      html {
-        -webkit-tap-highlight-color: transparent;
-        background-color: #f5f5f5 !important;
+      body, html {
+        margin: 0;
+        padding: 40px 0;
       }
 
-
-      .cursor {
-        pointer-events: none;
-        display: none;
+      body {
+        font: 17px/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+        background: white;
+        margin: 0;
+        color: #33333d;
+        overflow-y: scroll;
+        overflow-x: hidden;
       }
 
-      .cursor__ball {
-        position: fixed;
-        top: 0;
-        left: 0;
-        mix-blend-mode: difference;
-        z-index: 1000;
+      h1 {
+        font-size: 1.6em;
+        margin-top: 0;
       }
 
-      .cursor__ball circle {
-        fill: white;
-
+      h2 {
+        margin-top: 44px;
+        font-size: 1.3em;
       }
 
-      .cursor__ball--small circle {
-        fill: transparent;
+      h3 {
+        margin-top: 30px;
+        font-size: 1em;
       }
 
-
-      .light {
-        mix-blend-mode: screen;
+      section {
+        margin: 0 5.555555555555555%;
       }
 
-      .light-inner {
-        background: rgb(221, 0, 0);
+      p {
+        font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
       }
 
-      .shadow-inner {
-        background: transparent;
-        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+      a {
+        color: #33a0c0;
       }
 
-      .light,
-      .shadow,
-      .lightclick {
-        position: fixed;
-        top: 0;
-        left: 0;
-        transform: translate3d(var(--x, 150px), var(--y, -150px), 0);
-        pointer-events: none;
-        height: 0px;
-        width: 0px;
-        margin-top: 0px;
-        margin-left: 0px;
-        backface-visibility: hidden;
-        z-index: 1100;
+      code {
+        font-family: monospace;
+        font-size: 1.1em;
       }
 
-      .light-inner,
-      .shadow-inner {
-        opacity: 1;
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-        margin-top: -15px;
-        margin-left: -15px;
-        transform: translateZ(0) scale(var(--scale, 1));
-        z-index: 1100;
-        transition: transform 0.5s ease-out, opacity 0.5s ease-out 0.5s;
-        transition: transform 0.5s cubic-bezier(0.07, 0.08, 0.16, 0.99), opacity 0.5s ease-out 0.5s;
-        transform-origin: 50% 50%;
-        backface-visibility: hidden;
+      pre {
+        background: white;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 25px;
+        font-family: monospace;
+        overflow-x: auto;
       }
 
-      .lightclick {
-        display: none;
-      }
-
-      .lightclick-inner {
-        opacity: 0;
-        backface-visibility: hidden;
-        transform-origin: 50% 50%;
-        transform: scale(0);
-        transition: transform 0.5s cubic-bezier(0.07, 0.08, 0.16, 0.99), opacity 0.5s ease-out 0.5s;
-        border-radius: 50%;
+      .wrapper {
+        padding: 0 .75em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
         box-sizing: border-box;
-        height: 70px;
-        width: 70px;
-        margin-top: -35px;
-        margin-left: -35px;
-        border: 35px solid red;
-      }
-    }
-
-    @media screen and (max-width: 700px) {
-
-      .light,
-      .shadow,
-      .lightclick,
-      .cursor {
-        display: none !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-
-  <div class="cursor">
-    <div class="cursor__ball cursor__ball--big ">
-      <svg height="30" width="30">
-        <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
-      </svg>
-    </div>
-
-    <div class="cursor__ball cursor__ball--small">
-      <svg height="10" width="10">
-        <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
-      </svg>
-    </div>
-  </div>
-
-  <div class="light">
-    <div class="light-inner" style="--scale:1;"></div>
-  </div>
-  <div class="shadow">
-    <div class="shadow-inner" style="--scale:1;"></div>
-  </div>
-  <div class="lightclick">
-    <div class="lightclick-inner"></div>
-  </div>
-  <div id="root"></div>
-
-  <script>
-    (function (document, $) {
-      var body = document.querySelector('body');
-      var scene = document.querySelector('#root');
-      var light = document.querySelector('.light');
-      var lightInner = document.querySelector('.light-inner');
-      var shadow = document.querySelector('.shadow');
-      var shadowInner = document.querySelector('.shadow-inner');
-      var lightclick = document.querySelector('.lightclick');
-      var lightclickInner = document.querySelector('.lightclick-inner');
-      var links = document.querySelectorAll('a');
-      var animation = false;
-
-      var settings = {
-        smoothness: 4,
-        snapScale: 1.8,
-        maxSnapScale: 6,
-        defaultScale: 50
       }
 
-      var state = {
-        movementSmoothness: 4,
-        rotation: 0,
-        currentX: 0,
-        currentY: 0,
-        currentScale: 1,
-        clientX: 0,
-        clientY: 0,
-        clientScale: 1,
-        target: null,
-        targetScaleMultiplier: 0
-      };
-
-      function move(e) {
-        if (!animation && (e.clientX)) {
-          var mouseX = (e.clientX);
-          var mouseY = (e.clientY);
-
-          if (state.transition) {
-            state.clientScale = state.transition;
-          }
-          else if (state.target) {
-            state.clientScale = state.target.scale;
-          }
-          else {
-            state.clientScale = 1;
-          }
-
-          state.clientX = state.target ? state.target.x : (mouseX);
-          state.clientY = state.target ? state.target.y : (mouseY);
-
-        }
-      }
-      function moveScroll(e) {
-        state.clientX = state.rawClientX;
-        state.clientY = state.rawClientY;
-      }
-
-      function snap(e) {
-        var offset = $(this).offset();
-        var scrollX = window.pageXOffset;
-        var scrollY = window.pageYOffset;
-
-        var scale = Math.min(Math.max(this.offsetWidth, this.offsetHeight) / settings.defaultScale * settings.snapScale, settings.maxSnapScale);
-
-        if ($(this).data('snap-scale') !== undefined) {
-          scale = $(this).data('snap-scale')
-        }
-
-        state.movementSmoothness = settings.smoothness;
-        state.target = {
-          x: (offset.left + (this.offsetWidth / 2) - scrollX),
-          y: (offset.top + (this.offsetHeight / 2) - scrollY),
-          scale: scale
-        }
-        state.clientX = state.target.x;
-        state.clientY = state.target.y;
-        state.clientScale = state.target.scale;
-      }
-      function unsnap(e) {
-        state.target = null;
-        setTimeout(function () {
-          state.movementSmoothness = 4;
-        }, 500);
-      }
-
-      function click(e) {
-        $(lightclickInner).addClass('active');
-
-        var isSafariMac = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && (navigator.appVersion.indexOf("Mac") != -1);
-
-        if ($(this).hasClass('js-upscale') && !isSafariMac) {
-
-          state.transition = 50;
-          $(lightInner).removeClass('downscaling').addClass('upscaling');
-          $(shadowInner).removeClass('downscaling').addClass('upscaling');
-          state.clientScale = state.transition;
-          setTimeout(function () {
-            $(lightInner).removeClass('upscaling').addClass('downscaling');
-            $(shadowInner).removeClass('upscaling').addClass('downscaling');
-            setTimeout(function () {
-              $(lightInner).removeClass('downscaling');
-              $(shadowInner).removeClass('downscaling');
-              state.transition = 0;
-              state.clientScale = 1;
-            }, 1000)
-          }, 1250);
-        }
-
-        setTimeout(unsnap, 500);
-        setTimeout(function () {
-          $(lightclickInner).removeClass('active');
-        }, 1000);
-      }
-
-
-      unsnap();
-
-      setTimeout(function () {
-        state.transition = 0;
-        state.clientScale = 0.01;
-      }, 1500);
-      var supportsCssVariables = (window.CSS && window.CSS.supports && window.CSS.supports('--fake-var', 0));
-
-      function repeatOften() {
-        state.currentX = +(state.currentX + (state.clientX - state.currentX) / state.movementSmoothness).toFixed(2);
-        state.currentY = +(state.currentY + (state.clientY - state.currentY) / state.movementSmoothness).toFixed(2);
-
-        state.currentScale = state.clientScale;
-        if (supportsCssVariables) {
-
-          light.style.setProperty('--x', state.currentX + 'px');
-          light.style.setProperty('--y', state.currentY + 'px');
-          lightInner.style.setProperty('--scale', (state.currentScale).toFixed(2));
-
-
-          shadow.style.setProperty('--x', state.currentX + 'px');
-          shadow.style.setProperty('--y', state.currentY + 'px');
-          shadowInner.style.setProperty('--scale', (state.currentScale).toFixed(2));
-
-
-          lightclick.style.setProperty('--x', state.currentX + 'px');
-          lightclick.style.setProperty('--y', state.currentY + 'px');
-
-        } else {
-          light.style.transform = 'translate3d(' + state.currentX + 'px,' + state.currentY + 'px,0)';
-          lightInner.style.transform = 'scale(' + (state.currentScale).toFixed(2) + ')';
-
-          shadow.style.transform = 'translate3d(' + state.currentX + 'px,' + state.currentY + 'px,0)';
-          shadowInner.style.transform = 'scale(' + (state.currentScale).toFixed(2) + ')';
-
-          lightclick.style.transform = 'translate3d(' + state.currentX + 'px,' + state.currentY + 'px,0)';
-        }
-
-        requestAnimationFrame(repeatOften);
-      }
-
-      requestAnimationFrame(repeatOften);
-
-      function init() {
-        $('.light,.shadow,.lightclick').show();
-        if (window.PointerEvent) {
-          body.removeEventListener('pointermove', init);
-        } else {
-          body.removeEventListener('mousemove', init);
+      @media screen and (min-width:40em) {
+        body {
+          font-size: 1.0625em;
         }
       }
 
-      if (window.PointerEvent) {
-        body.addEventListener('pointermove', init);
-        body.addEventListener('pointermove', move);
-      } else {
-        body.addEventListener('mousemove', init);
-        body.addEventListener('mousemove', move);
+      @media screen and (min-width:45em) {
+        body {
+          font-size: 1em;
+        }
       }
 
-      $('body').delegate('.snapCursor', 'mouseenter', snap);
-      $('body').delegate('.snapCursor', 'mouseleave', unsnap);
-      $('body').delegate('.snapCursor, .js-upscale', 'click', click);
-      $('body').delegate('.snapCursor', 'focus', snap);
-      $('body').delegate('.snapCursor', 'blur', unsnap);
+      @media screen and (min-width:55.5em) {
+        body {
+          font-size: 1.0625em;
+        }
+      }
 
-      $('.light,.shadow,.lightclick').one('pointermove', function () {
-        this.style.display = 'block';
-      })
+      @media screen and (min-width:61.5em) {
+        body {
+          font-size: 1em;
+        }
+        section {
+          margin: 0 16.666666666666664%;
+        }
+      }
 
-      $('body').bind('unsnap', function (e) {
-        unsnap();
-      });
+      @media screen and (min-width:75em) {
+        body {
+          font-size: 1.0625em;
+        }
+      }
 
-    })(document, jQuery);
-  </script>
-  <script>
-    $(document).ready(function () {
-      var obj = document.createElement("audio");
-      obj.src = "./assets/son/click.wav";
-      obj.volume = 0.6;
-      obj.autoPlay = false;
-      obj.preLoad = true;
-      obj.controls = true;
+      @media screen and (min-width:87em) {
+        body {
+          font-size: 1em;
+        }
+        section {
+          margin: 0 27.77777777777778%;
+        }
+      }
 
-      $(".js-click").click(function () {
-        obj.play();
-        // obj.pause();
-      });
-    });
+      @media screen and (min-width:105em) {
+        body {
+          font-size: 1.0625em;
+        }
+      }
 
-  </script>
-</body>
+      @media screen and (min-width:117em) {
+        section {
+          margin: 0 5.555555555555555%;
+        }
+        section .wrapper {
+          width: 37.5%;
+          margin-left: 25%;
+        }
+      }
 
+      @media screen and (min-width:130em) {
+        body {
+          font-size: 1.125em;
+          max-width: 160em;
+        }
+      }
+    </style>
+  </head>
+  <body lang="en">
+    <section>
+      <div class="wrapper">
+        <h1>Welcome.</h1>
+        <p>You successfully created your Strapi application.</p>
+        <p>You are looking at: <code>./public/index.html</code>.</p>
+        <p>Your built-in admin panel is available at <a href="/admin" target="blank">/admin</a>.
+        <h2>Create your first API</h2>
+        <p>Easily generate a complete API with controllers, models and routes using:</p>
+        <pre><code class="lang-bash">$ strapi generate:api &lt;apiName&gt;</code></pre>
+        <h2>Resources</h2>
+        <p>You'll probably also want to learn how to customize your application, set up security and configure your data sources.</p>
+        <p>For more help getting started, check out:
+          <ul>
+            <li><a href="http://strapi.io/documentation/introduction" target="blank">Documentation</a></li>
+            <li><a href="https://github.com/strapi/strapi" target="blank">Repository on GitHub</a></li>
+            <li><a href="https://twitter.com/strapijs" target="blank">news on Twitter</a></li>
+            <li><a href="http://slack.strapi.io" target="blank">Real-time support on Slack</a></li>
+          </ul>
+        </p>
+      </div>
+    </section>
+  </body>
 </html>
